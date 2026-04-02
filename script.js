@@ -1,0 +1,1 @@
+const consumo = document.getEmelentById("consumo");
