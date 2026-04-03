@@ -17,7 +17,7 @@ cBtn1.addEventListener("click", () => {
   const vTempo = tempo.value;     // Lê o valor digitado no campo de tempo
 
   // Converte os valores de string para número, multiplica e exibe o resultado formatado com 2 casas decimais
-  rConsumo.innerHTML = "Este aparelho consome " + (Number(vPotencia) * Number(vTempo) / 1000).toFixed(2) + " kWh!";
+  rConsumo.innerHTML = "Este aparelho consome " + ((Number(vPotencia) * (Number(vTempo) / 60)) / 1000).toFixed(2) + " kWh!";
 });
 
 // Aguarda o clique no botão para executar o cálculo
