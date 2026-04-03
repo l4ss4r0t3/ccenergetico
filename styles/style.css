@@ -7,11 +7,12 @@ html, body {
   text-align: center;
 }
 
-/* Container principal: ocupa toda a largura até o máximo de 720px */
+/* Container principal: centralizado e ocupando toda a largura até o máximo de 720px */
 .conteudo {
   width: 100%;
   max-width: 720px;
   height: auto;
+  margin: auto;
 }
 
 /* Div de dados centralizado ocupando 90% do container */
