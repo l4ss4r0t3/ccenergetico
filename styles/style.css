@@ -1,63 +1,156 @@
+/*
+  ╔══════════════════════════════════════════════════════════════╗
+  ║         Calculadora de Consumo Energético — Estilos         ║
+  ╚══════════════════════════════════════════════════════════════╝
+
+  Índice:
+    1. Fonte
+    2. Reset & Base
+    3. Layout principal  (.conteudo)
+    4. Seções            (.secao-calculadora)
+    5. Grupo de dados    (.dados)
+    6. Labels
+    7. Inputs
+    8. Parágrafos de resultado
+    9. Botões
+   10. Rodapé            (footer)
+*/
+
+
+/* ── 1. FONTE ─────────────────────────────────────────────────
+   Google Sans carregada via Google Fonts.
+   display=swap → o texto aparece imediatamente com a fonte
+   de fallback enquanto a custom carrega (evita FOIT).
+────────────────────────────────────────────────────────────── */
 @import url('https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap');
 
-/* Remove espaçamentos padrão do navegador e ocupa toda a tela */
-html, body {
+
+/* ── 2. RESET & BASE ──────────────────────────────────────────
+   Remove margens e preenchimentos padrão dos navegadores.
+   box-sizing: border-box → padding e border são incluídos
+   nas dimensões declaradas (evita estouro de layout).
+────────────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
   width: 100%;
-  height: 100%;
+  min-height: 100%;   /* min-height em vez de height: evita cortar conteúdo longo */
   margin: 0;
   padding: 0;
   font-family: "Google Sans", sans-serif;
   text-align: center;
 }
 
-/* Container principal: centralizado e ocupando toda a largura até o máximo de 720px */
+
+/* ── 3. LAYOUT PRINCIPAL ──────────────────────────────────────
+   Centraliza o conteúdo horizontalmente e limita a largura
+   para manter boa legibilidade em telas grandes.
+────────────────────────────────────────────────────────────── */
 .conteudo {
   width: 100%;
   max-width: 720px;
-  height: auto;
-  margin: auto;
+  margin: 0 auto;     /* auto nas laterais → centraliza o bloco */
 }
 
-/* Div de dados centralizado ocupando 90% do container */
-.dados {
-  width: 90%;
-  margin: auto;
-  border: 1px solid black;
-  border-radius: 3px;
-}
 
-.dados label {
-  display: block;
-  margin: 25px 0 0 0;
-  font-size: 25px;
-}
-
-/* Inputs ocupam toda a largura disponível, tem 50 pixels de altura e são centralizados */
-.conteudo input {
-  width: 90%;
-  height: 50px;
-  margin: auto;
-  font-size: large;
-  text-align: center;
-}
-
-/* Botão ocupa metade da largura disponível,tem 50 pixels de altura e é centralizado */
-.conteudo button {
-  width: 50%;
-  height: 50px;
-  margin: 0 auto 25px auto;
+/* ── 4. SEÇÕES ────────────────────────────────────────────────
+   Cada calculadora fica numa <section>. O padding inferior
+   separa as seções sem depender de margens colapsadas.
+────────────────────────────────────────────────────────────── */
+.secao-calculadora {
+  padding-bottom: 16px;
 }
 
 .conteudo h2 {
-  padding: 20px 0 20px 0;
+  padding: 20px 0;
 }
 
-.conteudo p {
-  font-size: 25px;
+/* Fórmula exibida ao lado do título do h2 */
+.conteudo .formula {
+  display: block;
+  font-size: 0.65em;
+  font-weight: 400;
+  color: #666;
+  margin-top: 4px;
 }
 
-footer {
+
+/* ── 5. GRUPO DE DADOS ────────────────────────────────────────
+   Caixa que agrupa label, input, resultado e botão de cada
+   calculadora. A borda ajuda a delimitar visualmente o grupo.
+────────────────────────────────────────────────────────────── */
+.dados {
   width: 90%;
+  margin: 0 auto;
+  border: 1px solid #000;
+  border-radius: 3px;
+}
+
+
+/* ── 6. LABELS ────────────────────────────────────────────────
+   display: block → cada label ocupa uma linha inteira,
+   sem depender de <br> no HTML.
+────────────────────────────────────────────────────────────── */
+.dados label {
+  display: block;
+  margin-top: 25px;
+  font-size: 1.2rem;   /* rem → escala relativa ao tamanho base do documento */
+}
+
+
+/* ── 7. INPUTS ────────────────────────────────────────────────
+   Largura de 90% com padding lateral para o texto não
+   encostar na borda. height fixo garante área de toque
+   confortável em dispositivos móveis (mínimo recomendado: 44px).
+────────────────────────────────────────────────────────────── */
+.conteudo input {
+  width: 90%;
+  height: 50px;
+  padding: 0 12px;
+  margin: 8px auto 0;
+  font-size: 1rem;
+  text-align: center;
+  display: block;      /* bloqueia o input para poder centralizar com margin: auto */
+}
+
+
+/* ── 8. PARÁGRAFOS DE RESULTADO ───────────────────────────────
+   Exibidos abaixo do input após o cálculo, preenchidos via JS.
+   min-height reserva espaço e evita que o layout "pule"
+   quando o texto aparecer.
+────────────────────────────────────────────────────────────── */
+.conteudo p {
+  min-height: 1.5em;
+  font-size: 1.4rem;
+}
+
+
+/* ── 9. BOTÕES ────────────────────────────────────────────────
+   display: block + margin: auto centraliza o botão dentro
+   do .dados sem depender de flexbox ou text-align herdado.
+   cursor: pointer reforça a interatividade.
+────────────────────────────────────────────────────────────── */
+.conteudo button {
+  display: block;
+  width: 50%;
+  height: 50px;
+  margin: 0 auto 25px;
+  cursor: pointer;
+  font-family: inherit; /* herda a fonte do body (evita fallback genérico nos botões) */
+  font-size: 1rem;
+}
+
+
+/* ── 10. RODAPÉ ───────────────────────────────────────────────
+   Centralizado e com margem superior para separar do conteúdo.
+   max-width menor que .conteudo deixa o rodapé mais recuado.
+────────────────────────────────────────────────────────────── */
+footer {
   max-width: 640px;
   height: 40px;
   margin: 20px auto;

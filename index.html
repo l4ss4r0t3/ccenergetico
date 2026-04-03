@@ -1,78 +1,147 @@
 <!DOCTYPE html>
 
-<!-- Define o idioma da página como português brasileiro -->
+<!--
+  ╔══════════════════════════════════════════════════════════════╗
+  ║         Calculadora de Consumo Energético                   ║
+  ║  Calcula o consumo em kWh e o custo de eletrodomésticos.    ║
+  ╚══════════════════════════════════════════════════════════════╝
+
+  Estrutura de arquivos:
+    index.html         → marcação e estrutura (este arquivo)
+    styles/style.css   → estilos visuais
+    scripts/script.js  → lógica de cálculo
+-->
+
+<!-- lang="pt-BR" → declara o idioma para leitores de tela e mecanismos de busca -->
 <html lang="pt-BR">
+
 <head>
 
-  <!-- Define o tipo de conteúdo e a codificação de caracteres -->
-  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
-  <!-- Garante responsividade em dispositivos móveis -->
+  <!-- Codificação UTF-8: garante exibição correta de acentos e caracteres especiais -->
+  <meta charset="UTF-8">
+
+  <!-- Responsividade: impede zoom automático em dispositivos móveis -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Define a cor da barra do navegador em dispositivos móveis -->
+
+  <!-- Cor da barra de endereço em navegadores mobile (Chrome, Samsung Browser) -->
   <meta name="theme-color" content="#ffffff">
-  <!-- Importa o arquivo de estilos -->
+
+  <!-- Folha de estilos principal -->
   <link rel="stylesheet" href="styles/style.css">
 
   <title>Calculadora de Consumo Energético</title>
 
 </head>
+
 <body>
 
+  <!-- ── CABEÇALHO ──────────────────────────────────────────── -->
   <header>
-    <h1>💡 - Calculadora de Consumo Energético</h1>
+    <h1>💡 Calculadora de Consumo Energético</h1>
   </header>
-  
-  <!-- Container principal -->
-  <div class="conteudo">
 
-  <!-- Seção da calculadora de consumo energético -->
-  <h2>Calculadora de Consumo Energético (Potência X Tempo de Uso / 1000)</h2>
-  
-  <div class="dados">
+  <!-- ── CONTEÚDO PRINCIPAL ─────────────────────────────────── -->
+  <main class="conteudo">
 
-    <!-- Campo de entrada para a potência do aparelho -->
-    <label for="potencia">Insira a Potência do seu Eletro Doméstico aqui:</label><br>
-    <input type="number" id="potencia" placeholder="Watts"><br>
+    <!-- ── SEÇÃO 1: CONSUMO ───────────────────────────────────
+         Fórmula: Consumo (kWh) = Potência (W) × Tempo (min) / 60.000
+         (divide por 1.000 para converter W→kW, por 60 para min→h)
+    ──────────────────────────────────────────────────────────── -->
+    <section class="secao-calculadora" aria-labelledby="titulo-consumo">
 
-    <!-- Campo de entrada para o tempo de uso -->
-    <label for="tempo">Insira o Tempo de Uso do seu Eletrodoméstico aqui:</label><br>
-    <input type="number" id="tempo" placeholder="Minutos"><br>
+      <h2 id="titulo-consumo">
+        Calculadora de Consumo
+        <span class="formula">(Potência × Tempo) ÷ 60.000</span>
+      </h2>
 
-    <!-- Parágrafo onde o resultado do consumo será exibido -->
-    <p id="rConsumo"></p>
+      <div class="dados">
 
-    <button type="button" id="cBtn1">Calcular</button>
+        <!-- Potência do aparelho em Watts -->
+        <label for="potencia">Potência do eletrodoméstico:</label>
+        <input
+          type="number"
+          id="potencia"
+          placeholder="Ex.: 1200 W"
+          min="0"
+          step="any"
+          aria-describedby="rConsumo"
+        >
 
-  </div>
+        <!-- Tempo de uso em minutos -->
+        <label for="tempo">Tempo de uso:</label>
+        <input
+          type="number"
+          id="tempo"
+          placeholder="Ex.: 45 min"
+          min="0"
+          step="any"
+          aria-describedby="rConsumo"
+        >
 
-  <!-- Seção da calculadora de custo -->
-  <h2>Calculadora de Custo (Consumo X Preço)</h2>
-  
-  <div class="dados">
+        <!-- Área de resultado — preenchida via script.js -->
+        <p id="rConsumo" role="status" aria-live="polite"></p>
 
-    <!-- Campo de entrada para o consumo em kWh -->
-    <label for="consumo">Insira o Consumo do seu Eletro Doméstico aqui:</label><br>
-    <input type="number" id="consumo" placeholder="kWh"><br>
+        <button type="button" id="cBtn1">Calcular</button>
 
-    <!-- Campo de entrada para o preço do kWh -->
-    <label for="preco">Insira o Preço do kWh na sua Distribuidora aqui:</label><br>
-    <input type="number" id="preco" placeholder="R$"><br>
+      </div>
 
-    <!-- Parágrafo onde o resultado do custo será exibido -->
-    <p id="rCusto"></p>
+    </section>
 
-    <button type="button" id="cBtn2">Calcular</button>
+    <!-- ── SEÇÃO 2: CUSTO ─────────────────────────────────────
+         Fórmula: Custo (R$) = Consumo (kWh) × Preço (R$/kWh)
+    ──────────────────────────────────────────────────────────── -->
+    <section class="secao-calculadora" aria-labelledby="titulo-custo">
 
-  </div>
+      <h2 id="titulo-custo">
+        Calculadora de Custo
+        <span class="formula">Consumo × Preço do kWh</span>
+      </h2>
 
-  </div>
+      <div class="dados">
 
-  <!-- Importa o arquivo de scripts -->
-  <script src="scripts/script.js"></script>
+        <!-- Consumo em kWh (pode ser preenchido com o resultado da seção anterior) -->
+        <label for="consumo">Consumo do eletrodoméstico:</label>
+        <input
+          type="number"
+          id="consumo"
+          placeholder="Ex.: 0.9 kWh"
+          min="0"
+          step="any"
+          aria-describedby="rCusto"
+        >
 
+        <!-- Tarifa de energia da distribuidora local -->
+        <label for="preco">Tarifa da distribuidora (R$/kWh):</label>
+        <input
+          type="number"
+          id="preco"
+          placeholder="Ex.: 0.75 R$"
+          min="0"
+          step="any"
+          aria-describedby="rCusto"
+        >
+
+        <!-- Área de resultado — preenchida via script.js -->
+        <p id="rCusto" role="status" aria-live="polite"></p>
+
+        <button type="button" id="cBtn2">Calcular</button>
+
+      </div>
+
+    </section>
+
+  </main>
+  <!-- ── FIM DO CONTEÚDO PRINCIPAL ──────────────────────────── -->
+
+  <!-- ── RODAPÉ ─────────────────────────────────────────────── -->
   <footer>
     <p>desenvolvido por <b>l4ss4r0t3</b></p>
   </footer>
 
+  <!-- Script carregado ao final do body para garantir que o DOM
+       já está disponível quando o JS tentar acessar os elementos -->
+  <script src="scripts/script.js"></script>
+
 </body>
+
 </html>
