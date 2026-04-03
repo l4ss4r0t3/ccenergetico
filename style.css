@@ -14,8 +14,8 @@ html, body {
   height: auto;
 }
 
-/* Formulário centralizado ocupando 90% do container */
-.conteudo form {
+/* Div de dados centralizado ocupando 90% do container */
+.dados {
   width: 90%;
   margin: auto;
 }
