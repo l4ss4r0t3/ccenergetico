@@ -20,14 +20,16 @@ html, body {
   margin: auto;
 }
 
-/* Inputs ocupam toda a largura disponível e são centralizados */
+/* Inputs ocupam toda a largura disponível, tem 50 pixels de altura e são centralizados */
 .conteudo input {
   width: 100%;
+  height: 50px;
   margin: auto;
 }
 
-/* Botão ocupa metade da largura disponível e é centralizado */
+/* Botão ocupa metade da largura disponível,tem 50 pixels de altura e é centralizado */
 .conteudo button {
   width: 50%;
+  height: 50px;
   margin: auto;
 }
