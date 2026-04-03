@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 
-<html>
+<!-- Define o idioma da página como português brasileiro -->
+<html lang="pt-BR">
 <head>
 
+  <!-- Define o tipo de conteúdo e a codificação de caracteres -->
   <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <!-- Garante responsividade em dispositivos móveis -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Define a cor da barra do navegador em dispositivos móveis -->
   <meta name="theme-color" content="#ffffff">
+  <!-- Importa o arquivo de estilos -->
   <link rel="stylesheet" href="style.css">
 
   <title>Calculadora de Consumo Energético</title>
@@ -13,31 +18,57 @@
 </head>
 <body>
   
+  <!-- Container principal -->
   <div class="conteudo">
 
   <h1>
-    Calculadora de Consumo Energético
+    Calculadora de Consumo Energético e de Custo
   </h1>
 
-<h2>Calculadora de Custo (Consumo X Preço)</h2>
+  <!-- Seção da calculadora de consumo energético -->
+  <h2>Calculadora de Consumo Energético (Potência X Tempo de Uso / 1000)</h2>
   
-<form>
+  <div class="dados">
 
-  <label for="consumo">Insira o Consumo do seu Eletro Doméstico aqui:</label><br>
-  <input type="number" id="consumo" placeholder="kWh"><br>
+    <!-- Campo de entrada para a potência do aparelho -->
+    <label for="potencia">Insira a Potência do seu Eletro Doméstico aqui:</label><br>
+    <input type="number" id="potencia" placeholder="Watts"><br>
 
-  <label for="preco">Preço do kWh na sua Distribuidora:</label><br>
-  <input type="number" id="preco" placeholder="R$"><br>
+    <!-- Campo de entrada para o tempo de uso -->
+    <label for="tempo">Insira o Tempo de Uso do seu Eletrodoméstico aqui:</label><br>
+    <input type="number" id="tempo" placeholder="Minutos"><br>
 
-<p id="rCusto"></p>
+    <!-- Parágrafo onde o resultado do consumo será exibido -->
+    <p id="rConsumo"></p>
 
-<button type="button" id="cBtn2">Calcular</button>
+    <button type="button" id="cBtn1">Calcular</button>
 
-</form>
+  </div>
 
-</div>
+  <!-- Seção da calculadora de custo -->
+  <h2>Calculadora de Custo (Consumo X Preço)</h2>
+  
+  <div class="dados">
 
-<script src="script.js"></script>
+    <!-- Campo de entrada para o consumo em kWh -->
+    <label for="consumo">Insira o Consumo do seu Eletro Doméstico aqui:</label><br>
+    <input type="number" id="consumo" placeholder="kWh"><br>
+
+    <!-- Campo de entrada para o preço do kWh -->
+    <label for="preco">Insira o Preço do kWh na sua Distribuidora aqui:</label><br>
+    <input type="number" id="preco" placeholder="R$"><br>
+
+    <!-- Parágrafo onde o resultado do custo será exibido -->
+    <p id="rCusto"></p>
+
+    <button type="button" id="cBtn2">Calcular</button>
+
+  </div>
+
+  </div>
+
+  <!-- Importa o arquivo de scripts -->
+  <script src="script.js"></script>
   
 </body>
 </html>
