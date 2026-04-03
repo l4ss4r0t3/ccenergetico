@@ -1,9 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap');
+
 /* Remove espaçamentos padrão do navegador e ocupa toda a tela */
 html, body {
   width: 100%;
   height: 100%;
   margin: 0;
   padding: 0;
+  font-family: "Google Sans", sans-serif;
   text-align: center;
 }
 
@@ -19,6 +22,8 @@ html, body {
 .dados {
   width: 90%;
   margin: auto;
+  border: 1px solid black;
+  border-radius: 3px;
 }
 
 .dados label {
@@ -29,16 +34,18 @@ html, body {
 
 /* Inputs ocupam toda a largura disponível, tem 50 pixels de altura e são centralizados */
 .conteudo input {
-  width: 100%;
+  width: 90%;
   height: 50px;
   margin: auto;
+  font-size: large;
+  text-align: center;
 }
 
 /* Botão ocupa metade da largura disponível,tem 50 pixels de altura e é centralizado */
 .conteudo button {
   width: 50%;
   height: 50px;
-  margin: auto;
+  margin: 0 auto 25px auto;
 }
 
 .conteudo h2 {
@@ -50,11 +57,9 @@ html, body {
 }
 
 footer {
-  width: 100%;
-  height: 100px;
+  width: 50%;
+  max-width: 500px;
+  height: 40px;
+  margin: 20px auto;
   text-align: center;
-}
-
-footer p {
-  padding: 40px 0 0 0;
 }
