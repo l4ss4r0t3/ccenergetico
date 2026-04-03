@@ -21,6 +21,12 @@ html, body {
   margin: auto;
 }
 
+.dados label {
+  display: block;
+  margin: 25px 0 0 0;
+  font-size: 25px;
+}
+
 /* Inputs ocupam toda a largura disponível, tem 50 pixels de altura e são centralizados */
 .conteudo input {
   width: 100%;
@@ -33,4 +39,18 @@ html, body {
   width: 50%;
   height: 50px;
   margin: auto;
+}
+
+.conteudo h2 {
+  font-size: 30px;
+  padding: 20px 0 20px 0;
+}
+
+.conteudo p {
+  font-size: 25px;
+}
+
+footer {
+  width: 100%;
+  height: 100px;
 }
